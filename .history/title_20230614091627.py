@@ -66,19 +66,19 @@ class mainScreen:
 
 	def run(self):
 		background = rect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT, WHITE)
-		background.loadSprite("assets/Background-1.png")
+		background.loadSprite("asets/Background-1.png")
 
 		title_background = rect(296, 30, 500,400, BLUE)
-		title_background.loadSprite("assets/titlebg.png")
+		title_background.loadSprite("asets/titlebg.png")
 
 		play = rect(345, 195, 140, 40, BLUE)
 		exit = rect(580,195,140, 40, BLUE)
 
 		cursor = rect(0,0, 40, 40, WHITE)
-		cursor.loadSprite("assets/cursor.png")
+		cursor.loadSprite("asets/cursor.png")
 
 		sprite = rect(WINDOW_WIDTH // 2 - 150, 360, 300, 300, WHITE)
-		sprite.loadSprite("assets/ship.png")
+		sprite.loadSprite("asets/ship.png")
 
 
 		clicked = False

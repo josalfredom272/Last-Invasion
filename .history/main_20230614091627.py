@@ -76,21 +76,21 @@ class rect:
 		window.blit(self.surface, (self.x , self.y))
 
 	def drawSprite(self, window):
-		window.blit(self.sprite, (self.x, self.y))
+		window.blit(self.sprte, (self.x, self.y))
 
 	def loadSprite(self, file):
 		texture = pygame.image.load(file)
 		self.texture_surface = pygame.image.load(file)
-		self.sprite = pygame.transform.scale(texture, self.size)
+		self.sprte = pygame.transform.scale(texture, self.size)
 
 	def changeColor(self, color):
 		self.surface = pygame.Surface(self.size)
 		self.surface.fill(color)
 
-	def colidesWith(self, other_body):
-		if self.x + self.w < other_body.x or self.x > other_body.x + other_body.w:
+	def colidesWith(self, othe_body):
+		if self.x + self.w < othe_body.x or self.x > othe_body.x + othe_body.w:
 			return False
-		elif self.y + self.h < other_body.y or self.y > other_body.y + other_body.h:
+		elif self.y + self.h < othe_body.y or self.y > othe_body.y + othe_body.h:
 			return False
 		else:
 			return True
@@ -107,7 +107,7 @@ class rect:
 	def rotate(self, window):
 		self.angle %= 360
 		self.angle += 5
-		self.rotation_sprite = pygame.transform.rotate(self.sprite, self.angle)
+		self.rotation_sprite = pygame.transform.rotate(self.sprte, self.angle)
 		window.blit(self.rotation_sprite, (self.x - self.rotation_sprite.get_width() // 2, self.y - self.rotation_sprite.get_width() // 2))
 
 
@@ -131,8 +131,8 @@ class Entity:
 
 		# creating the sprite
 		texture = pygame.image.load(file)
-		self.sprite = pygame.transform.scale(texture, (self.w, self.h))
-		self.angle_sprite = pygame.transform.rotate(self.sprite, self.angle)
+		self.sprte = pygame.transform.scale(texture, (self.w, self.h))
+		self.angle_sprite = pygame.transform.rotate(self.sprte, self.angle)
 
 		self.score = 0
 
@@ -141,24 +141,24 @@ class Entity:
 
 		# explosion sprites, other clases will inherit these sprites, so they can excplode when they die
 		self.current_explosion_sprite = 0
-		self.explosion_sprites = []
-		self.explosion_sprites.append(pygame.image.load("assets/e1.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e2.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e3.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e4.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e5.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e6.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e7.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e8.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e9.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e10.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e11.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e12.png"))
+		self.explosion_sprtes = []
+		self.explosion_sprtes.append(pygame.image.load("asets/e1.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e2.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e3.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e4.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e5.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e6.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e7.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e8.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e9.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e10.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e11.png"))
+		self.explosion_sprtes.append(pygame.image.load("asets/e12.png"))
 
 
 	# regular method to draw the entity
 	def draw(self, window):
-		window.blit(self.sprite, (self.x, self.y))
+		window.blit(self.sprte, (self.x, self.y))
 
 	# player sprite was pointing up, so I repositioned it in code, 2 lazy to edit the sprite
 	def rotationDraw(self, window):
@@ -181,7 +181,7 @@ class Entity:
 				self.not_game_over = False
 
 			self.current_explosion_sprite += 0.6
-			window.blit(self.explosion_sprites[int(self.current_explosion_sprite)], (self.x, self.y))
+			window.blit(self.explosion_sprtes[int(self.current_explosion_sprite)], (self.x, self.y))
 		# drawing the laser in the window
 		self.drawLaser(window)
 
@@ -189,7 +189,7 @@ class Entity:
 	# if sprite is not at desired angle, use this method outside of the game loop
 	def setAngle(self, a):
 		self.angle = a
-		self.angle_sprite = pygame.transform.rotate(self.sprite, self.angle)
+		self.angle_sprite = pygame.transform.rotate(self.sprte, self.angle)
 
 	# player movement
 	def update(self, moving_up, moving_down, moving_left, moving_right):
@@ -239,10 +239,10 @@ class Entity:
 	def score100(self):
 		self.score += 100
 
-	def colidesWith(self, other_body):
-		if self.x + self.w < other_body.x or self.x > other_body.x + other_body.w:
+	def colidesWith(self, othe_body):
+		if self.x + self.w < othe_body.x or self.x > othe_body.x + othe_body.w:
 			return False
-		elif self.y + self.h < other_body.y or self.y > other_body.y + other_body.h:
+		elif self.y + self.h < othe_body.y or self.y > othe_body.y + othe_body.h:
 			return False
 		else:
 			return True
@@ -267,9 +267,9 @@ class Enemy(Entity):
 		self.current_sprite = 0
 		self.sprites = []
 		self.sprites.append(pygame.image.load(file))
-		self.sprites.append(pygame.image.load("assets/u2.png"))
-		self.sprites.append(pygame.image.load("assets/u3.png"))
-		self.sprites.append(pygame.image.load("assets/u4.png"))
+		self.sprites.append(pygame.image.load("asets/u2.png"))
+		self.sprites.append(pygame.image.load("asets/u3.png"))
+		self.sprites.append(pygame.image.load("asets/u4.png"))
 
 		for i in range(len(self.sprites)):
 			self.sprites[i] = pygame.transform.scale(self.sprites[i], (self.w, self.h))
@@ -289,7 +289,7 @@ class Enemy(Entity):
 				self.explode = False
 				self.current_explosion_sprite = 0
 			self.current_explosion_sprite += 0.6
-			window.blit(self.explosion_sprites[int(self.current_sprite)], (self.x, self.y))
+			window.blit(self.explosion_sprtes[int(self.current_sprite)], (self.x, self.y))
 
 		# if the ufo dies, keep the laser on the screen until it goes out of bounds
 		# notice we are not calling the drawLaser method fomr the inheritance,
@@ -367,8 +367,8 @@ class Asteroid(Entity):
 		self.counter = 0
 
 		# explosion texture
-		explosion_texture = pygame.image.load("assets/exp.png")
-		self.explosion_sprite = pygame.transform.scale(explosion_texture, (self.w, self.h))
+		explosion_texture = pygame.image.load("asets/exp.png")
+		self.explosion_sprte = pygame.transform.scale(explosion_texture, (self.w, self.h))
 
 
 	def update(self):
@@ -385,10 +385,10 @@ class Asteroid(Entity):
 
 	def draw(self, window):
 		if not self.explode:
-			window.blit(self.sprite, (self.x, self.y))
+			window.blit(self.sprte, (self.x, self.y))
 		if self.explode:
 			self.counter += 0.012
-			window.blit(self.explosion_sprite, (self.x, self.y))
+			window.blit(self.explosion_sprte, (self.x, self.y))
 			if self.counter > 0.09:
 				self.resetPosition()
 				self.explode = False
@@ -418,7 +418,7 @@ class MidBoss(Enemy):
 				self.explode = False
 				self.current_explosion_sprite = 0
 			self.current_explosion_sprite += 0.6
-			window.blit(self.explosion_sprites[int(self.current_sprite)], (self.x, self.y))
+			window.blit(self.explosion_sprtes[int(self.current_sprite)], (self.x, self.y))
 
 		for i in range(len(self.lasers)):
 			if self.lasers[i].x < 0:
@@ -492,7 +492,7 @@ class Game:
 		# ^^^^^^^^^^^^^^^^^^^^^^    CREATING ALL THE ENTITIES AND ITEMS FOR THE GAME ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 		# PLAYER    #
-		player = Entity(0, 0, 60, 60, "assets/ship.png")
+		player = Entity(0, 0, 60, 60, "asets/ship.png")
 		player.setAngle(270)
 		player.laser_speed = 60
 
@@ -506,12 +506,12 @@ class Game:
 			powerUps.append(p)
 
 		# mini boss and ufo
-		mini_boss = MidBoss(WINDOW_WIDTH + 400, WINDOW_HEIGHT //2, 100, 100, "assets/ship5.png")
+		mini_boss = MidBoss(WINDOW_WIDTH + 400, WINDOW_HEIGHT //2, 100, 100, "asets/ship5.png")
 		mini_boss.setAngle(90)
 		mini_boss.life = 200
 
-		ufo = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "assets/u1.png")
-		ufo2 = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "assets/u1.png")
+		ufo = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "asets/u1.png")
+		ufo2 = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "asets/u1.png")
 		ufo2.speed = 3
 		ufo2.laser_speed = 32
 		ufo2.death_time = 12
@@ -520,22 +520,22 @@ class Game:
 		# BARS and ITEMS 
 		bar = rect(0,0, player.life, 30, GREEN)
 		battery = rect(190, 0, player.life + 40, 46, WHITE)
-		battery.loadSprite("assets/battery.png")
+		battery.loadSprite("asets/battery.png")
 		mini_boss_life = rect(0,0, mini_boss.life, 2, GREEN)
 
 		##### LIFE AND POWER UP 
 		cell = rect(WINDOW_WIDTH + 60, WINDOW_HEIGHT // 2, 60,60, WHITE)
-		cell.loadSprite("assets/cell.png")
+		cell.loadSprite("asets/cell.png")
 		active_cell = False
 
 		cell2 = rect(WINDOW_WIDTH + 60, WINDOW_HEIGHT // 2, 60,60, WHITE)
-		cell2.loadSprite("assets/cell2.png")
+		cell2.loadSprite("asets/cell2.png")
 		active_cell2 = False
 
 		# asteroids and stars
 		asteroids = []
 		for i in range(10):
-			asteroid = Asteroid(WINDOW_WIDTH + 3000, random.randint(0, WINDOW_HEIGHT - 60), 60, 60, "assets/asteroid.png")
+			asteroid = Asteroid(WINDOW_WIDTH + 3000, random.randint(0, WINDOW_HEIGHT - 60), 60, 60, "asets/asteroid.png")
 			asteroids.append(asteroid)
 
 		stars_amount = 160
@@ -556,11 +556,11 @@ class Game:
 
 		# these will mover on the background for visual effect
 		planet = rect(WINDOW_WIDTH + 200, 10, 160, 160, WHITE)
-		planet.loadSprite("assets/parallax-space-big-planet.png")
+		planet.loadSprite("asets/parallax-space-big-planet.png")
 		planet2 = rect(WINDOW_WIDTH + 200, 10, 200, 200, WHITE)
-		planet2.loadSprite("assets/earth.png")
+		planet2.loadSprite("asets/earth.png")
 		planet3 = rect(WINDOW_WIDTH + 200, 10, 180, 240, WHITE)
-		planet3.loadSprite("assets/Citronis.png")
+		planet3.loadSprite("asets/Citronis.png")
 		planets = [planet, planet2, planet3]
 		planet_index = 0
 		# give them a random y position
@@ -569,7 +569,7 @@ class Game:
 
 		# background sprite
 		background = rect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT, WHITE)
-		background.loadSprite("assets/Background-4.png")
+		background.loadSprite("asets/Background-4.png")
 
 		black_screen = rect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT, WHITE)
 

@@ -142,18 +142,18 @@ class Entity:
 		# explosion sprites, other clases will inherit these sprites, so they can excplode when they die
 		self.current_explosion_sprite = 0
 		self.explosion_sprites = []
-		self.explosion_sprites.append(pygame.image.load("assets/e1.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e2.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e3.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e4.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e5.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e6.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e7.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e8.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e9.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e10.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e11.png"))
-		self.explosion_sprites.append(pygame.image.load("assets/e12.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e1.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e2.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e3.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e4.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e5.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e6.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e7.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e8.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e9.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e10.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e11.png"))
+		self.explosion_sprites.append(pygame.image.load("asets/e12.png"))
 
 
 	# regular method to draw the entity
@@ -267,9 +267,9 @@ class Enemy(Entity):
 		self.current_sprite = 0
 		self.sprites = []
 		self.sprites.append(pygame.image.load(file))
-		self.sprites.append(pygame.image.load("assets/u2.png"))
-		self.sprites.append(pygame.image.load("assets/u3.png"))
-		self.sprites.append(pygame.image.load("assets/u4.png"))
+		self.sprites.append(pygame.image.load("asets/u2.png"))
+		self.sprites.append(pygame.image.load("asets/u3.png"))
+		self.sprites.append(pygame.image.load("asets/u4.png"))
 
 		for i in range(len(self.sprites)):
 			self.sprites[i] = pygame.transform.scale(self.sprites[i], (self.w, self.h))
@@ -367,7 +367,7 @@ class Asteroid(Entity):
 		self.counter = 0
 
 		# explosion texture
-		explosion_texture = pygame.image.load("assets/exp.png")
+		explosion_texture = pygame.image.load("asets/exp.png")
 		self.explosion_sprite = pygame.transform.scale(explosion_texture, (self.w, self.h))
 
 
@@ -492,7 +492,7 @@ class Game:
 		# ^^^^^^^^^^^^^^^^^^^^^^    CREATING ALL THE ENTITIES AND ITEMS FOR THE GAME ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 		# PLAYER    #
-		player = Entity(0, 0, 60, 60, "assets/ship.png")
+		player = Entity(0, 0, 60, 60, "asets/ship.png")
 		player.setAngle(270)
 		player.laser_speed = 60
 
@@ -506,12 +506,12 @@ class Game:
 			powerUps.append(p)
 
 		# mini boss and ufo
-		mini_boss = MidBoss(WINDOW_WIDTH + 400, WINDOW_HEIGHT //2, 100, 100, "assets/ship5.png")
+		mini_boss = MidBoss(WINDOW_WIDTH + 400, WINDOW_HEIGHT //2, 100, 100, "asets/ship5.png")
 		mini_boss.setAngle(90)
 		mini_boss.life = 200
 
-		ufo = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "assets/u1.png")
-		ufo2 = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "assets/u1.png")
+		ufo = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "asets/u1.png")
+		ufo2 = Enemy(WINDOW_WIDTH + 200, WINDOW_HEIGHT // 2, 80, 40, "asets/u1.png")
 		ufo2.speed = 3
 		ufo2.laser_speed = 32
 		ufo2.death_time = 12
@@ -520,22 +520,22 @@ class Game:
 		# BARS and ITEMS 
 		bar = rect(0,0, player.life, 30, GREEN)
 		battery = rect(190, 0, player.life + 40, 46, WHITE)
-		battery.loadSprite("assets/battery.png")
+		battery.loadSprite("asets/battery.png")
 		mini_boss_life = rect(0,0, mini_boss.life, 2, GREEN)
 
 		##### LIFE AND POWER UP 
 		cell = rect(WINDOW_WIDTH + 60, WINDOW_HEIGHT // 2, 60,60, WHITE)
-		cell.loadSprite("assets/cell.png")
+		cell.loadSprite("asets/cell.png")
 		active_cell = False
 
 		cell2 = rect(WINDOW_WIDTH + 60, WINDOW_HEIGHT // 2, 60,60, WHITE)
-		cell2.loadSprite("assets/cell2.png")
+		cell2.loadSprite("asets/cell2.png")
 		active_cell2 = False
 
 		# asteroids and stars
 		asteroids = []
 		for i in range(10):
-			asteroid = Asteroid(WINDOW_WIDTH + 3000, random.randint(0, WINDOW_HEIGHT - 60), 60, 60, "assets/asteroid.png")
+			asteroid = Asteroid(WINDOW_WIDTH + 3000, random.randint(0, WINDOW_HEIGHT - 60), 60, 60, "asets/asteroid.png")
 			asteroids.append(asteroid)
 
 		stars_amount = 160
@@ -556,11 +556,11 @@ class Game:
 
 		# these will mover on the background for visual effect
 		planet = rect(WINDOW_WIDTH + 200, 10, 160, 160, WHITE)
-		planet.loadSprite("assets/parallax-space-big-planet.png")
+		planet.loadSprite("asets/parallax-space-big-planet.png")
 		planet2 = rect(WINDOW_WIDTH + 200, 10, 200, 200, WHITE)
-		planet2.loadSprite("assets/earth.png")
+		planet2.loadSprite("asets/earth.png")
 		planet3 = rect(WINDOW_WIDTH + 200, 10, 180, 240, WHITE)
-		planet3.loadSprite("assets/Citronis.png")
+		planet3.loadSprite("asets/Citronis.png")
 		planets = [planet, planet2, planet3]
 		planet_index = 0
 		# give them a random y position
@@ -569,7 +569,7 @@ class Game:
 
 		# background sprite
 		background = rect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT, WHITE)
-		background.loadSprite("assets/Background-4.png")
+		background.loadSprite("asets/Background-4.png")
 
 		black_screen = rect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT, WHITE)
 
