@@ -1,3 +1,4 @@
+import sys
 import pygame
 import random
 import title
@@ -1008,8 +1009,9 @@ if mainTitle.playGame:
 			ending.run()
 			#system("clear")
 
-quit()
-
+#quit()
+pygame.quit()
+sys.exit()
 
 
 
