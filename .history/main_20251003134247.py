@@ -964,8 +964,7 @@ class Game:
 				pygame.mixer.Sound.play(highScore)
 
 			if mini_boss.alive:
-				window.blit(miniboss_bar,(mini_boss.x, mini_boss.y  - 4))
-				battery.drawSprite(window)
+				 window.blit(miniboss_bar,(mini_boss.x, mini_boss.y  - 4))			battery.drawSprite(window)
 
 			#cell.drawSprite(window)
 			cell.rotate(window)

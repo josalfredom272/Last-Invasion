@@ -965,7 +965,7 @@ class Game:
 
 			if mini_boss.alive:
 				window.blit(miniboss_bar,(mini_boss.x, mini_boss.y  - 4))
-				battery.drawSprite(window)
+			battery.drawSprite(window)
 
 			#cell.drawSprite(window)
 			cell.rotate(window)
