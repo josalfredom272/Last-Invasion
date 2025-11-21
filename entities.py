@@ -1,7 +1,7 @@
 import pygame
 import random
 from time import sleep
-from settings import *
+from settings import WINDOW_WIDTH, WINDOW_HEIGHT, YELLOW, GREEN, RED
 
 sounds = {}
 
