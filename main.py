@@ -5,8 +5,8 @@ import title
 import ending
 import rect2
 from time import sleep
-from settings import *
-from entities import *
+from settings import WINDOW_WIDTH, WINDOW_HEIGHT, RED, YELLOW, GREEN, BLUE, VIOLET, ORANGE, WHITE
+from entities import Entity, Enemy, Asteroid, MidBoss, rect, sounds, init_sounds
 
 pygame.init()
 pygame.display.set_caption("Last Invasion By: Lu")
