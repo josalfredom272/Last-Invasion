@@ -1,5 +1,5 @@
 import pygame
-import random
+
 from time import sleep
 
 pygame.init()
