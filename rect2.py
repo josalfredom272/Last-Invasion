@@ -1,6 +1,6 @@
 import pygame
 import math
-import time
+
 
 YELLOW = (255,255,0)
 GREEN = (0,255,0)
