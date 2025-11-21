@@ -101,7 +101,8 @@ class mainScreen:
 			for event in pygame.event.get():
 				# closing the window with [x]
 				if event.type == pygame.QUIT:
-					quit()
+					pygame.quit()
+					sys.exit()
 
 				elif event.type == pygame.MOUSEBUTTONDOWN:
 					clicked = True
