@@ -489,6 +489,7 @@ class Game:
 
 	def run(self):
 		game_time = 1
+		clock = pygame.time.Clock()
 
 		# ^^^^^^^^^^^^^^^^^^^^^^    CREATING ALL THE ENTITIES AND ITEMS FOR THE GAME ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -601,7 +602,8 @@ class Game:
 			for event in pygame.event.get():
 				# closing the window with [x]
 				if event.type == pygame.QUIT:
-					quit()
+					pygame.quit()
+					sys.exit()
 					running = False
 
 				#----------   controls ----------------#
@@ -974,7 +976,7 @@ class Game:
 
 			game_time += 0.12
 			pygame.display.update()
-			sleep(10 / 1000)
+			clock.tick(60)
 			#*******************************************************************************************************************************************
 
 		# if the main loop breaks get the player life so we can decide if we get a wining screen or loosing screen
