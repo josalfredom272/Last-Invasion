@@ -577,7 +577,7 @@ class Game:
 		# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 		# VARIABLES FOR THE PLAYER AND CELL, CLASSES WERE GETTING TOO LONG
-		angle = 0
+
 		moving_up = False
 		moving_down = False
 		moving_left = False
