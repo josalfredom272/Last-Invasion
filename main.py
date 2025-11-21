@@ -88,7 +88,7 @@ class rect:
 		self.surface = pygame.Surface(self.size)
 		self.surface.fill(color)
 
-	def colidesWith(self, other_body):
+	def collidesWith(self, other_body):
 		if self.x + self.w < other_body.x or self.x > other_body.x + other_body.w:
 			return False
 		elif self.y + self.h < other_body.y or self.y > other_body.y + other_body.h:
@@ -240,7 +240,7 @@ class Entity:
 	def score100(self):
 		self.score += 100
 
-	def colidesWith(self, other_body):
+	def collidesWith(self, other_body):
 		if self.x + self.w < other_body.x or self.x > other_body.x + other_body.w:
 			return False
 		elif self.y + self.h < other_body.y or self.y > other_body.y + other_body.h:
@@ -649,7 +649,7 @@ class Game:
 			for i in range(len(asteroids)):
 				for j in range(len(player.lasers)):
 					# print("LASERS: ", len(player.lasers), "ASTEROIDS: ", len(asteroids))  DATA FOR DEBUG
-					if player.lasers[j].colidesWith(asteroids[i]) and not asteroids[i].explode:
+					if player.lasers[j].collidesWith(asteroids[i]) and not asteroids[i].explode:
 						asteroids[i].explode = True
 						player.lasers.pop(j)
 						player.score += 1
@@ -658,7 +658,7 @@ class Game:
 
 				# if powerups collides with asteroids, destoyr asteroid and decrease power up life
 				for k in range(len(powerUps)):
-					if powerUps[k].colidesWith(asteroids[i]) and not asteroids[i].explode and powerUps[k].active:
+					if powerUps[k].collidesWith(asteroids[i]) and not asteroids[i].explode and powerUps[k].active:
 						asteroids[i].explode = True
 						player.score += 1
 						powerUps[k].life -= 1
@@ -667,13 +667,13 @@ class Game:
 
 			# if the laser collides with UFO, take 1 ufo life away and add 1 point
 			for i in range(len(player.lasers)):
-				if player.lasers[i].colidesWith(ufo) and ufo.alive:
+				if player.lasers[i].collidesWith(ufo) and ufo.alive:
 					ufo.life -= 1
 					player.score += 1
 					player.lasers.pop(i)
 					pygame.mixer.Sound.play(hit)
 					break
-				if player.lasers[i].colidesWith(ufo2) and ufo2.alive:
+				if player.lasers[i].collidesWith(ufo2) and ufo2.alive:
 					ufo2.life -= 1.8
 					player.score += 1
 					player.lasers.pop(i)
@@ -682,7 +682,7 @@ class Game:
 
 
 				# if the lasers colide with mini boss take away 1 life from miniboss
-				if player.lasers[i].colidesWith(mini_boss) and mini_boss.alive:
+				if player.lasers[i].collidesWith(mini_boss) and mini_boss.alive:
 					mini_boss.life -= 1
 					player.score += 1
 					player.lasers.pop(i)
@@ -692,19 +692,19 @@ class Game:
 
 			# if the power ups collide with ufo take both ufo and power ups take dmg
 			for i in range(len(powerUps)):
-				if powerUps[i].colidesWith(ufo) and ufo.alive and powerUps[i].active:
+				if powerUps[i].collidesWith(ufo) and ufo.alive and powerUps[i].active:
 					ufo.life -= 0.5
 					powerUps[i].life -= 1
 					player.score += 1
 					pygame.mixer.Sound.play(hit)
 					break
-				elif powerUps[i].colidesWith(ufo2) and ufo2.alive and powerUps[i].active:
+				elif powerUps[i].collidesWith(ufo2) and ufo2.alive and powerUps[i].active:
 					ufo2.life -= 0.5
 					powerUps[i].life -= 1
 					player.score += 1
 					pygame.mixer.Sound.play(hit)
 					break
-				elif powerUps[i].colidesWith(mini_boss) and mini_boss.alive and powerUps[i].active:
+				elif powerUps[i].collidesWith(mini_boss) and mini_boss.alive and powerUps[i].active:
 					mini_boss.life -= 1
 					powerUps[i]. life -= 2
 					player.score += 1
@@ -714,14 +714,14 @@ class Game:
 
 			# if the ufo lasser hits the player, take away some life
 			for i in range(len(ufo.lasers)):
-				if ufo.lasers[i].colidesWith(player):
+				if ufo.lasers[i].collidesWith(player):
 					player.life -= 12
 					ufo.lasers.pop(i)
 					pygame.mixer.Sound.play(damage)
 					break
 			# same as avobe, for ufo2
 			for i in range(len(ufo2.lasers)):
-				if ufo2.lasers[i].colidesWith(player):
+				if ufo2.lasers[i].collidesWith(player):
 					player.life -= 12
 					ufo2.lasers.pop(i)
 					pygame.mixer.Sound.play(damage)
@@ -729,7 +729,7 @@ class Game:
 
 			# if the miniboss lasser hits the player, take away some life
 			for i in range(len(mini_boss.lasers)):
-				if mini_boss.lasers[i].colidesWith(player):
+				if mini_boss.lasers[i].collidesWith(player):
 					player.life -= 6
 					mini_boss.lasers.pop(i)
 					pygame.mixer.Sound.play(damage)
@@ -737,21 +737,21 @@ class Game:
 
 			# if player colides with asteroid, take away 1 life point
 			for i in range(len(asteroids)):
-				if player.colidesWith(asteroids[i]) and not asteroids[i].explode:
+				if player.collidesWith(asteroids[i]) and not asteroids[i].explode:
 					player.life -= 6
 					asteroids[i].explode = True
 					pygame.mixer.Sound.play(damage)
 
 			# if player collides with ufo, game over
-			if player.colidesWith(ufo):
+			if player.collidesWith(ufo):
 				player.life = 0
 				ufo.life = 0
-			if player.colidesWith(ufo2):
+			if player.collidesWith(ufo2):
 				player.life = 0
 				ufo2.life = 0
 
 			# if player colides with minibos kill player
-			if player.colidesWith(mini_boss):
+			if player.collidesWith(mini_boss):
 				player.life = 0
 				# mini_boss.life = 0
 
@@ -770,14 +770,14 @@ class Game:
 
 
 			# if player colects the cell, restart cell position and add life to the player
-			if player.colidesWith(cell):
+			if player.collidesWith(cell):
 				pygame.mixer.Sound.play(health)
 				active_cell = False
 				cell.x = WINDOW_WIDTH + cell.w
 				cell.y = random.randint(0, WINDOW_HEIGHT - cell.h)
 				player.life += 25
 
-			if player.colidesWith(cell2):
+			if player.collidesWith(cell2):
 				pygame.mixer.Sound.play(health)
 				active_cell2 = False
 				cell2.x = WINDOW_WIDTH + cell.w

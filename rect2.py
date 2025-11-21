@@ -49,7 +49,7 @@ class Rect(object):
 		self.x = self.initialX + math.cos(self.angleX) * self.distance
 		self.y = self.initialY + math.sin(self.angleY) * self.distance
 
-	def colidesWith(self, othe_body):
+	def collidesWith(self, othe_body):
 		if self.x + self.w < othe_body.x or self.x > othe_body.x + othe_body.w:
 			return False
 		elif self.y + self.h < othe_body.y or self.y > othe_body.y + othe_body.h:
